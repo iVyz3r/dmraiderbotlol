@@ -20,8 +20,8 @@ Este proyecto es una herramienta web con un bot de Discord, desarrollada con **N
 
 ```bash
 # 1. Clona el repositorio
-git clone https://github.com/iVyz3r/dmraiderbotlol.git
-cd dmraiderlol
+git clone https://github.com/AnarchGPT/mi-repo.git
+cd mi-repo
 
 # 2. Inicializa el proyecto (si es nuevo)
 npm init -y

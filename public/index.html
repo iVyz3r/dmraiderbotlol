@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>DM Raider HTML</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #111;
+      border: 2px solid #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #fff;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    img.logo {
+      max-width: 100px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #222;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+button {
+    background-color:rgb(83, 102, 249);
+    border: none;
+    color: white;
+    height: 30px;
+    width: 100px;
+    border-color: rgb(83, 102, 249);
+    border-radius: 5px;
+    transition: transform 0.3s ease; 
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    #mensajeExito {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  h1.gradient-text {
+  background: linear-gradient(45deg, #aa00ff, #5bb8ff, hsl(0, 100%, 50%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+  h1.gradient {
+  background: linear-gradient(45deg, #ff7878, #e364f1, hsl(242, 93%, 79%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  }
+  button:hover {
+    color: rgb(83, 102, 249);
+    border: none;
+    background-color: rgb(213, 241, 255);
+    animation: mover 0.5s forwards;
+    transform: scale(1.1); 
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    color: black;
+    transform: scale(0.8);
+    animation: backwards;
+    border: none;
+    background-color: rgb(172, 182, 255);
+    border-color: rgb(172, 182, 255);
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="gradient-text">Rise Team</h1>
+    <img
+      src="./rise.png"
+      alt="Logo TF"
+      class="logo"
+    />
+    <h1 class="gradient">Ingresa los datos para hacer el raid</h1>
+
+    <input type="text" id="userId" placeholder="ID del usuario de Discord" />
+    <textarea id="peticion" rows="4" placeholder="Mensaje a enviar"></textarea>
+    <button onclick="enviarPeticion()">Enviar</button>
+
+    <div class="footer">Créditos: Alan Beltrán Saavedra</div>
+  </div>
+
+  <div id="mensajeExito"></div>
+
+  <script>
+    async function enviarPeticion() {
+      const userId = document.getElementById("userId").value.trim();
+      const peticion = document.getElementById("peticion").value.trim();
+      const mensajeDiv = document.getElementById("mensajeExito");
+
+      mensajeDiv.textContent = "";
+
+      if (!userId || !peticion) {
+        mensajeDiv.style.color = "#f00";
+        mensajeDiv.textContent = "Completa todos los campos.";
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/enviar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, peticion }),
+        });
+
+        const data = await res.text();
+        mensajeDiv.style.color = "#0f0";
+        mensajeDiv.textContent = data;
+      } catch (e) {
+        mensajeDiv.style.color = "#f00";
+        mensajeDiv.textContent = "Error al contactar el bot.";
+      }
+    }
+  </script>
+</body>
+</html>
