@@ -1,33 +1,62 @@
-# ⚙️ TF Studios Bot
+# DM Raider Bot LOL
 
-Este proyecto es una herramienta web con un bot de Discord, desarrollada con **Node.js**, **Express**, y **Discord.js**. Puedes ejecutarlo tanto en PC como en Android (usando Termux).
-
----
-
-## 📦 Requisitos generales
-
-- Node.js (v16 o superior recomendado)
-- Git
-- Acceso a Internet
-- Cuenta de Discord con permisos para crear bots
-- Tokens válidos de bots
+Bot de Discord para enviar mensajes directos (DM) múltiples usando múltiples tokens.  
+Funciona con un servidor web para gestionar las peticiones y envíos de mensajes.
 
 ---
 
-## 🖥️ Instalación en PC (Windows, Linux, macOS)
+## ⚙️ Requisitos generales
 
-> Estos pasos se ejecutan desde una terminal (CMD, PowerShell o bash).
+- Node.js v16 o superior  
+- Git  
+- Tokens de bots de Discord (pueden estar expuestos en el código)  
+- Permisos para usar intents necesarios en el Discord Developer Portal  
+
+---
+
+## 🖥️ Instalación y ejecución en PC (Windows, macOS, Linux)
+
+Estos pasos se ejecutan desde una terminal (CMD, PowerShell o bash):
 
 ```bash
 # 1. Clona el repositorio
-git clone https://github.com/AnarchGPT/mi-repo.git
-cd mi-repo
+git clone https://github.com/iVyz3r/dmraiderbotlol.git
+cd dmraiderbotlol
 
-# 2. Inicializa el proyecto (si es nuevo)
-npm init -y
+# 2. Instala las dependencias
+npm install
 
-# 3. Instala las dependencias necesarias
-npm install express discord.js body-parser
+# 3. Ejecuta el bot
+npm start
+```
 
-# 4. Ejecuta el bot
-node bot.js
+---
+
+## 📱 Instalación y ejecución en Termux (Android)
+
+Estos son los pasos para ejecutarlo en Termux
+
+---
+
+# 1. Actualiza los paquetes
+```bash
+pkg update && pkg upgrade -y
+```
+
+# 2. Instala Node.js y Git
+```bash
+pkg install nodejs git -y
+```
+# 3. Clona el repositorio
+```bash
+git clone https://github.com/iVyz3r/dmraiderbotlol.git
+cd dmraiderbotlol
+```
+# 4. Instala las dependencias
+```bash
+npm install
+```
+# 5. Ejecuta el bot
+```bash
+npm start
+```
